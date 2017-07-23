@@ -4,9 +4,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.DependencyModel;
-namespace Microsoft.Extensions.DependencyInjection
+
+namespace Microsoft.Extensions.DependencyInjection.Reflection
 {
-    internal class TypeFinder
+    public class TypeFinder:ITypeFinder
     {
         private List<Assembly> _assemblies = null;
         public List<Assembly> Assemblies

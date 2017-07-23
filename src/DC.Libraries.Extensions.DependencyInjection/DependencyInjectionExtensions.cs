@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using Microsoft.Extensions.DependencyInjection.Reflection;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -8,6 +9,7 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddDependencyInjection(this IServiceCollection services)
         {
+            services.AddSingleton<ITypeFinder, TypeFinder>();
             var finder = new TypeFinder();
 
             AddTypes(services, finder, typeof(ISingletonDependency), DependencyLifeStyle.Singleton);

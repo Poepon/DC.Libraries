@@ -24,7 +24,7 @@ namespace WebApp.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { _singleton.Say(), _scoped.Say(),_transient.Say() };
+            return new string[] { _singleton.Say(), _scoped.Say(),_transient.Say(),TestAutoMap.Test() };
         }
 
         // GET api/values/5
