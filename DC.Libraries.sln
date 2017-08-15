@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.13
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DC.Libraries.Extensions.DependencyInjection", "src\DC.Libraries.Extensions.DependencyInjection\DC.Libraries.Extensions.DependencyInjection.csproj", "{DB8A20E0-3480-42B3-B41B-6F5675391E43}"
 EndProject
@@ -15,7 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{89A9811B-6BE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DC.Test.BLL", "tests\DC.Test.BLL\DC.Test.BLL.csproj", "{C11E3B1E-6079-4B46-9E16-3E8588B9B293}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DC.Libraries.Extensions.AutoMapper", "src\DC.Libraries.Extensions.AutoMapper\DC.Libraries.Extensions.AutoMapper.csproj", "{C17AD572-BCA7-4046-AA8E-DBEB3784936E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DC.Libraries.Extensions.AutoMapper", "src\DC.Libraries.Extensions.AutoMapper\DC.Libraries.Extensions.AutoMapper.csproj", "{C17AD572-BCA7-4046-AA8E-DBEB3784936E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DC.Web.Framework", "src\DC.Web.Framework\DC.Web.Framework.csproj", "{FC66589F-A219-4730-8424-5CE0A0E35973}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{C17AD572-BCA7-4046-AA8E-DBEB3784936E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C17AD572-BCA7-4046-AA8E-DBEB3784936E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C17AD572-BCA7-4046-AA8E-DBEB3784936E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC66589F-A219-4730-8424-5CE0A0E35973}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC66589F-A219-4730-8424-5CE0A0E35973}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC66589F-A219-4730-8424-5CE0A0E35973}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC66589F-A219-4730-8424-5CE0A0E35973}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,5 +59,9 @@ Global
 		{D65921D3-FDF4-4D80-B7AD-768C9847366D} = {4329814A-65E1-4169-8547-D1C6185F9B2E}
 		{C11E3B1E-6079-4B46-9E16-3E8588B9B293} = {4329814A-65E1-4169-8547-D1C6185F9B2E}
 		{C17AD572-BCA7-4046-AA8E-DBEB3784936E} = {89A9811B-6BE9-44DF-91AC-EA0027CFA126}
+		{FC66589F-A219-4730-8424-5CE0A0E35973} = {89A9811B-6BE9-44DF-91AC-EA0027CFA126}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2093AAEF-1D7C-4409-A93C-62D484FB6433}
 	EndGlobalSection
 EndGlobal
