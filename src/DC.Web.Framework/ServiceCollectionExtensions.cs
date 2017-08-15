@@ -43,8 +43,8 @@ namespace CX.Web
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddTransient<IThemeProvider, ThemeProvider>();
-            services.AddTransient<ITenantProvider, TenantProvider>();
-            services.AddTransient<IThemeContext, ThemeContext>();
+            services.AddSingleton<ITenantProvider, TenantProvider>();
+            services.AddSingleton<IThemeContext, ThemeContext>();
 
             //themes support
             services.Configure<RazorViewEngineOptions>(options =>

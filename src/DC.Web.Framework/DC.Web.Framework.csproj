@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <RootNamespace>CX.Web</RootNamespace>
     <AssemblyName>CX.Web.Framework</AssemblyName>
-    <Version>2.0.0.0</Version>
+    <Version>2.0.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
