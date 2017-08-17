@@ -19,12 +19,7 @@ namespace CX.Web.Themes
         /// <summary>
         /// Get or set current theme system name
         /// </summary>
-        public string WorkingThemeName
-        {
-            get
-            {
-                return _tenantProvider.CurrenTenant.Theme;
-            }
-        }
+        public string WorkingThemeName => _tenantProvider.CurrenTenant.Theme;
+
     }
 }

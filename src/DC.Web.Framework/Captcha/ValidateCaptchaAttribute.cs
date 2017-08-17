@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Text;
+﻿using System;
+using CX.Web.Captcha.Enums;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Primitives;
@@ -15,11 +16,11 @@ namespace CX.Web.Captcha
         /// Create instance of the filter attribute 
         /// </summary>
         /// <param name="actionParameterName">The name of the action parameter to which the result will be passed</param>
-        public ValidateCaptchaAttribute(string actionParameterName = "captchaValid") : base(typeof(ValidateCaptchaFilter))
+        public ValidateCaptchaAttribute(string actionParameterName = "captchaValid") : base(
+            typeof(ValidateCaptchaFilter))
         {
             this.Arguments = new object[] { actionParameterName };
         }
-
         #region Nested filter
 
         /// <summary>
@@ -27,13 +28,6 @@ namespace CX.Web.Captcha
         /// </summary>
         private class ValidateCaptchaFilter : IActionFilter
         {
-            #region Constants
-
-            private const string CHALLENGE_FIELD_KEY = "recaptcha_challenge_field";
-            private const string RESPONSE_FIELD_KEY = "recaptcha_response_field";
-            private const string G_RESPONSE_FIELD_KEY = "g-recaptcha-response";
-
-            #endregion
 
             #region Fields
 
@@ -61,23 +55,20 @@ namespace CX.Web.Captcha
             {
                 var isValid = false;
 
-                //get form values
-                var captchaChallengeValue = context.HttpContext.Request.Form[CHALLENGE_FIELD_KEY];
-                var captchaResponseValue = context.HttpContext.Request.Form[RESPONSE_FIELD_KEY];
-                var gCaptchaResponseValue = context.HttpContext.Request.Form[G_RESPONSE_FIELD_KEY];
-
-                if ((!StringValues.IsNullOrEmpty(captchaChallengeValue) && !StringValues.IsNullOrEmpty(captchaResponseValue)) || !StringValues.IsNullOrEmpty(gCaptchaResponseValue))
+                var form = context.HttpContext.Request.Form;
+                var captchaName = (string)form[CaptchaTagHelper.CaptchaHiddenTokenName];
+                var inputText = (string)form[CaptchaTagHelper.CaptchaInputName];
+                if (!StringValues.IsNullOrEmpty(captchaName) && !StringValues.IsNullOrEmpty(inputText))
                 {
-                    //create CAPTCHA validator
-                    var captchaValidtor = new GReCaptchaValidator()
-                    {
-                        RemoteIp = context.HttpContext.Connection.RemoteIpAddress?.ToString(),
-                        Response = !StringValues.IsNullOrEmpty(captchaResponseValue) ? captchaResponseValue : gCaptchaResponseValue,
-                        Challenge = captchaChallengeValue
-                    };
 
                     //validate request
-                    isValid = captchaValidtor.Validate();
+
+                    var captchaText = context.HttpContext.Session.GetString(captchaName);
+
+                    if (inputText.Equals(captchaText, StringComparison.OrdinalIgnoreCase))
+                    {
+                        isValid = true;
+                    }
                 }
 
                 return isValid;
@@ -97,7 +88,7 @@ namespace CX.Web.Captcha
                     return;
 
                 //whether CAPTCHA is enabled
-                if (context.HttpContext != null && context.HttpContext.Request != null)
+                if (context.HttpContext?.Request != null && string.Equals("POST", context.HttpContext.Request.Method, StringComparison.OrdinalIgnoreCase))
                 {
                     //push the validation result as an action parameter
                     context.ActionArguments[_actionParameterName] = ValidateCaptcha(context);
@@ -120,5 +111,41 @@ namespace CX.Web.Captcha
         }
 
         #endregion
+    }
+
+    /// <summary>
+    /// Validate Captcha Attribute
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
+    class ValidateCaptcha2Attribute : ActionFilterAttribute
+    {
+        /// <summary>
+        /// The language of captcha generator. It's default value is Persian.
+        /// </summary>
+        public Language CaptchaGeneratorLanguage { set; get; } = Language.Chinese;
+
+
+        /// <summary>
+        /// Captcha validator.
+        /// </summary>
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+
+
+            var form = filterContext.HttpContext.Request.Form;
+
+            var captchaName = (string)form[CaptchaTagHelper.CaptchaHiddenTokenName];
+            var inputText = (string)form[CaptchaTagHelper.CaptchaInputName];
+            var captchaText = filterContext.HttpContext.Session.GetString(captchaName);
+
+
+            if (string.IsNullOrEmpty(inputText) || !inputText.Equals(captchaText))
+            {
+
+            }
+
+            base.OnActionExecuting(filterContext);
+        }
+
     }
 }

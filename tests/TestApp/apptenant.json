@@ -1,0 +1,15 @@
+﻿{
+  "Multitenancy": {
+    "Tenants": [
+      {
+        "Name": "DemoA",
+        "Theme": "DemoA"
+      },
+      {
+        "Name": "DemoB",
+        "Theme": "DemoB"
+      }
+    ],
+    "CurrentTenant": "DemoA"
+  }
+}

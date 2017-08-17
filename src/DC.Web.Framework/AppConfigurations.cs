@@ -5,14 +5,14 @@ namespace CX.Web
 {
     public static class AppConfigurations
     {
-        private static readonly ConcurrentDictionary<string, IConfigurationRoot> ConfigurationCache;
+        private static readonly ConcurrentDictionary<string, IConfiguration> ConfigurationCache;
 
         static AppConfigurations()
         {
-            ConfigurationCache = new ConcurrentDictionary<string, IConfigurationRoot>();
+            ConfigurationCache = new ConcurrentDictionary<string, IConfiguration>();
         }
 
-        public static IConfigurationRoot Get(string path, string environmentName = null)
+        public static IConfiguration Get(string path, string environmentName = null)
         {
             var cacheKey = path + "#" + environmentName;
             return ConfigurationCache.GetOrAdd(
@@ -21,7 +21,7 @@ namespace CX.Web
             );
         }
 
-        public static IConfigurationRoot GetTheme(string path)
+        public static IConfiguration GetTheme(string path)
         {
             var cacheKey = path;
             return ConfigurationCache.GetOrAdd(
@@ -30,7 +30,7 @@ namespace CX.Web
             );
         }
 
-        public static IConfigurationRoot GetFullPath(string fullpath)
+        public static IConfiguration GetFullPath(string fullpath)
         {
             var cacheKey = fullpath;
             return ConfigurationCache.GetOrAdd(
@@ -39,7 +39,7 @@ namespace CX.Web
             );
         }
 
-        private static IConfigurationRoot BuildConfiguration(string path, string environmentName = null)
+        private static IConfiguration BuildConfiguration(string path, string environmentName = null)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(path)
@@ -55,7 +55,7 @@ namespace CX.Web
             return builder.Build();
         }
 
-        private static IConfigurationRoot BuildTheme(string path)
+        private static IConfiguration BuildTheme(string path)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(path)

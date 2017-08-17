@@ -10,5 +10,6 @@ namespace CX.Web.Themes
         /// Get or set current theme system name
         /// </summary>
         string WorkingThemeName { get; }
+
     }
 }
