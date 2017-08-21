@@ -7,11 +7,9 @@ namespace CX.Web.Captcha.Providers
 {
     public class SessionCaptchaStorageProvider : ICaptchaStorageProvider
     {
-        private readonly ICaptchaProtectionProvider _captchaProtectionProvider;
         private readonly ILogger<SessionCaptchaStorageProvider> _logger;
-        public SessionCaptchaStorageProvider(ICaptchaProtectionProvider captchaProtectionProvider, ILogger<SessionCaptchaStorageProvider> logger)
+        public SessionCaptchaStorageProvider(ILogger<SessionCaptchaStorageProvider> logger)
         {
-            _captchaProtectionProvider = captchaProtectionProvider;
             _logger = logger;
         }
 
@@ -30,14 +28,13 @@ namespace CX.Web.Captcha.Providers
             string cookieValue= context.Session.GetString(token);
             if (string.IsNullOrEmpty(cookieValue))
             {
-                _logger.LogWarning("Couldn't find the captcha cookie in the request.");
+                _logger.LogWarning("Couldn't find the captcha value in the request.");
                 return null;
             }
 
             Remove(context, token);
 
-            var decryptedValue = _captchaProtectionProvider.Decrypt(cookieValue);
-            return decryptedValue;
+            return cookieValue;
         }
 
         public void Remove(HttpContext context, string token)

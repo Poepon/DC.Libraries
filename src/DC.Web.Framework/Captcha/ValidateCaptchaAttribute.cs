@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Primitives;
+using CX.Web.Captcha.Contracts;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CX.Web.Captcha
 {
@@ -53,6 +55,8 @@ namespace CX.Web.Captcha
             /// <returns>True if CAPTCHA is valid; otherwise false</returns>
             protected bool ValidateCaptcha(ActionExecutingContext context)
             {
+                var storage = context.HttpContext.RequestServices.GetService<ICaptchaStorageProvider>();
+                
                 var isValid = false;
 
                 var form = context.HttpContext.Request.Form;
@@ -63,7 +67,7 @@ namespace CX.Web.Captcha
 
                     //validate request
 
-                    var captchaText = context.HttpContext.Session.GetString(captchaName);
+                    var captchaText = storage.GetValue(context.HttpContext, captchaName);
 
                     if (inputText.Equals(captchaText, StringComparison.OrdinalIgnoreCase))
                     {
@@ -111,41 +115,5 @@ namespace CX.Web.Captcha
         }
 
         #endregion
-    }
-
-    /// <summary>
-    /// Validate Captcha Attribute
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
-    class ValidateCaptcha2Attribute : ActionFilterAttribute
-    {
-        /// <summary>
-        /// The language of captcha generator. It's default value is Persian.
-        /// </summary>
-        public Language CaptchaGeneratorLanguage { set; get; } = Language.Chinese;
-
-
-        /// <summary>
-        /// Captcha validator.
-        /// </summary>
-        public override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-
-
-            var form = filterContext.HttpContext.Request.Form;
-
-            var captchaName = (string)form[CaptchaTagHelper.CaptchaHiddenTokenName];
-            var inputText = (string)form[CaptchaTagHelper.CaptchaInputName];
-            var captchaText = filterContext.HttpContext.Session.GetString(captchaName);
-
-
-            if (string.IsNullOrEmpty(inputText) || !inputText.Equals(captchaText))
-            {
-
-            }
-
-            base.OnActionExecuting(filterContext);
-        }
-
     }
 }
