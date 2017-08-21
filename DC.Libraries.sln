@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.3
+VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DC.Libraries.Extensions.DependencyInjection", "src\DC.Libraries.Extensions.DependencyInjection\DC.Libraries.Extensions.DependencyInjection.csproj", "{DB8A20E0-3480-42B3-B41B-6F5675391E43}"
 EndProject
@@ -17,7 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DC.Libraries.Extensions.Aut
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DC.Web.Framework", "src\DC.Web.Framework\DC.Web.Framework.csproj", "{FC66589F-A219-4730-8424-5CE0A0E35973}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "tests\TestApp\TestApp.csproj", "{00B970DC-587D-44D6-BD16-E7F97D407792}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApp", "tests\TestApp\TestApp.csproj", "{00B970DC-587D-44D6-BD16-E7F97D407792}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{9D07061F-E030-4068-9373-FEEF37D63FFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NugetServerWeb", "tools\NugetServerWeb\NugetServerWeb.csproj", "{DF875117-0571-4733-A51B-621DCF801ACA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +53,10 @@ Global
 		{00B970DC-587D-44D6-BD16-E7F97D407792}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00B970DC-587D-44D6-BD16-E7F97D407792}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00B970DC-587D-44D6-BD16-E7F97D407792}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF875117-0571-4733-A51B-621DCF801ACA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF875117-0571-4733-A51B-621DCF801ACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF875117-0571-4733-A51B-621DCF801ACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF875117-0571-4733-A51B-621DCF801ACA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +68,7 @@ Global
 		{C17AD572-BCA7-4046-AA8E-DBEB3784936E} = {89A9811B-6BE9-44DF-91AC-EA0027CFA126}
 		{FC66589F-A219-4730-8424-5CE0A0E35973} = {89A9811B-6BE9-44DF-91AC-EA0027CFA126}
 		{00B970DC-587D-44D6-BD16-E7F97D407792} = {4329814A-65E1-4169-8547-D1C6185F9B2E}
+		{DF875117-0571-4733-A51B-621DCF801ACA} = {9D07061F-E030-4068-9373-FEEF37D63FFB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2093AAEF-1D7C-4409-A93C-62D484FB6433}
