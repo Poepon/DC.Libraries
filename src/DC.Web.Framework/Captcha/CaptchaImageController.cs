@@ -78,9 +78,6 @@ namespace CX.Web.Captcha
             tagHelper.FontName = model.FontName;
             tagHelper.FontSize = model.FontSize;
             tagHelper.ForeColor = model.ForeColor;
-            tagHelper.Language = model.Language;
-            tagHelper.Max = model.Max;
-            tagHelper.Min = model.Min;
             tagHelper.Placeholder = model.Placeholder;
             tagHelper.TextBoxClass = model.TextBoxClass;
             tagHelper.TextBoxTemplate = model.TextBoxTemplate;

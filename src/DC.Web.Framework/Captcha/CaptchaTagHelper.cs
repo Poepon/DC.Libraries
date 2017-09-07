@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using CX.Web.Captcha.Contracts;
 using CX.Web.Captcha.Providers;
-using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -62,8 +61,8 @@ namespace CX.Web.Captcha
         {
 
             output.TagName = "div";
-            output.Attributes.Add("class", "Captcha");
-            var captchaDivId = $"Captcha{context.UniqueId}{_randomNumberProvider.Next(Min, Max)}";
+            output.Attributes.Add("class", ContainerClass);
+            var captchaDivId = $"Captcha{context.UniqueId}{Name}";
             output.Attributes.Add("id", captchaDivId);
             output.TagMode = TagMode.StartTagAndEndTag;
 
@@ -131,7 +130,6 @@ namespace CX.Web.Captcha
             captchaImage.Attributes.Add("name", dntCaptchaImg);
             captchaImage.Attributes.Add("alt", "captcha");
             captchaImage.Attributes.Add("src", actionUrl);
-            captchaImage.Attributes.Add("style", "margin-bottom: 4px;");
             captchaImage.Attributes.Add("onclick", $"this.src='{actionUrl}?' + Math.random()");
             return captchaImage;
         }
@@ -160,7 +158,6 @@ namespace CX.Web.Captcha
             refreshButton.Attributes.Add("href", "#refresh");
             refreshButton.Attributes.Add("onclick", $"document.getElementById('CaptchaImg').src='{actionUrl}?' + Math.random()");
             refreshButton.Attributes.Add("class", RefreshButtonClass);
-            refreshButton.InnerHtml.SetContent("刷新");
             return refreshButton;
         }
 

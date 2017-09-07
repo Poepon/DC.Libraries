@@ -37,28 +37,16 @@ namespace CX.Web.Captcha
         public string Name { set; get; } = Guid.NewGuid().ToString("N");
 
         /// <summary>
-        /// The language of the captcha. It's default value is Persian.
-        /// </summary>
-        [HtmlAttributeName("asp-captcha-generator-language")]
-        public Language Language { set; get; } = Language.Persian;
-
-        /// <summary>
-        /// The max value of the captcha. It's default value is 9000.
-        /// </summary>
-        [HtmlAttributeName("asp-captcha-generator-max")]
-        public int Max { set; get; } = 9000;
-
-        /// <summary>
-        /// The min value of the captcha. It's default value is 1.
-        /// </summary>
-        [HtmlAttributeName("asp-captcha-generator-min")]
-        public int Min { set; get; } = 1;
-
-        /// <summary>
         /// The placeholder value of the captcha. It's default value is `کد امنیتی به رقم`.
         /// </summary>
         [HtmlAttributeName("asp-placeholder")]
-        public string Placeholder { set; get; } = "کد امنیتی به رقم";
+        public string Placeholder { set; get; } = "请输入验证码";
+
+        /// <summary>
+        /// The css class of the captcha container. It's default value is ``.
+        /// </summary>
+        [HtmlAttributeName("asp-container-class")]
+        public string ContainerClass { set; get; } = "";
 
         /// <summary>
         /// The css class of the captcha. It's default value is `text-box single-line form-control col-md-4`.
@@ -77,7 +65,7 @@ namespace CX.Web.Captcha
         /// The validation-error-message of the captcha. It's default value is `لطفا کد امنیتی را به رقم وارد نمائید`.
         /// </summary>
         [HtmlAttributeName("asp-validation-error-message")]
-        public string ValidationErrorMessage { set; get; } = "لطفا کد امنیتی را به رقم وارد نمائید";
+        public string ValidationErrorMessage { set; get; } = "请输入验证码";
 
         /// <summary>
         /// The validation-message-class of the captcha. It's default value is `text-danger`.
