@@ -1,5 +1,4 @@
 ﻿using System;
-using CX.Web.Captcha.Enums;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace CX.Web.Captcha
@@ -54,12 +53,8 @@ namespace CX.Web.Captcha
         [HtmlAttributeName("asp-text-box-class")]
         public string TextBoxClass { set; get; } = "text-box single-line form-control col-md-4";
 
-        /// <summary>
-        /// The text-box-template of the captcha. It's default value is `<div class='input-group col-md-4'><span class='input-group-addon'><span class='glyphicon glyphicon-lock'></span></span>{0}</div>`.
-        /// </summary>
-        [HtmlAttributeName("asp-text-box-template")]
-        public string TextBoxTemplate { set; get; } =
-            @"<div class='input-group col-md-4'><span class='input-group-addon'><span class='glyphicon glyphicon-lock'></span></span>{0}</div>";
+        [HtmlAttributeName("asp-container-template")]
+        public string ContainerTemplate { set; get; } = "{Textbox}{Image}{RefreshBtn}";
 
         /// <summary>
         /// The validation-error-message of the captcha. It's default value is `لطفا کد امنیتی را به رقم وارد نمائید`.

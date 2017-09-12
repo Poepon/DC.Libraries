@@ -25,7 +25,6 @@ namespace CX.Web.Captcha
     public class CaptchaImageController : Controller
     {
         private readonly ICaptchaImageProvider _captchaImageProvider;
-        private readonly ICaptchaProtectionProvider _captchaProtectionProvider;
         private readonly ICaptchaStorageProvider _captchaStorageProvider;
         private readonly ITempDataProvider _tempDataProvider;
         private readonly ILogger<CaptchaImageController> _logger;
@@ -35,14 +34,12 @@ namespace CX.Web.Captcha
         /// </summary>
         public CaptchaImageController(
             ICaptchaImageProvider captchaImageProvider,
-            ICaptchaProtectionProvider captchaProtectionProvider,
             ITempDataProvider tempDataProvider,
             ICaptchaStorageProvider captchaStorageProvider,
             ILogger<CaptchaImageController> logger, ICaptchaCodeGenerator captchaCodeGenerator)
         {
 
             _captchaImageProvider = captchaImageProvider;
-            _captchaProtectionProvider = captchaProtectionProvider;
             _tempDataProvider = tempDataProvider;
             _captchaStorageProvider = captchaStorageProvider;
             _logger = logger;
@@ -80,7 +77,8 @@ namespace CX.Web.Captcha
             tagHelper.ForeColor = model.ForeColor;
             tagHelper.Placeholder = model.Placeholder;
             tagHelper.TextBoxClass = model.TextBoxClass;
-            tagHelper.TextBoxTemplate = model.TextBoxTemplate;
+            tagHelper.ContainerTemplate = model.ContainerTemplate;
+            tagHelper.ContainerClass = model.ContainerClass;
             tagHelper.ValidationErrorMessage = model.ValidationErrorMessage;
             tagHelper.ValidationMessageClass = model.ValidationMessageClass;
             tagHelper.RefreshButtonClass = model.RefreshButtonClass;

@@ -67,13 +67,15 @@ namespace CX.Web.Captcha
             output.TagMode = TagMode.StartTagAndEndTag;
 
             var captchaImage = GetCaptchaImageTagBuilder();
-            output.Content.AppendHtml(captchaImage);
+            //output.Content.AppendHtml(captchaImage);
 
             var refreshButton = GetRefreshButtonTagBuilder();
-            output.Content.AppendHtml(refreshButton);
+            //output.Content.AppendHtml(refreshButton);
 
             var textInput = GetTextInputTagBuilder();
-            output.Content.AppendHtml($"{string.Format(TextBoxTemplate, textInput.GetString())}");
+            //output.Content.AppendHtml($"{string.Format(TextBoxTemplate, textInput.GetString())}");
+
+            output.Content.AppendHtml(ContainerTemplate.Replace("{Textbox}", textInput.GetString()).Replace("{Image}", captchaImage.GetString()).Replace("{RefreshBtn}", refreshButton.GetString()));
 
             var validationMessage = GetValidationMessageTagBuilder();
             output.Content.AppendHtml(validationMessage);
