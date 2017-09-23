@@ -3,7 +3,9 @@
     "Tenants": [
       {
         "Name": "DemoA",
-        "Theme": "DemoA"
+        "DefaultTheme": "DemoA",
+        "MobileTheme": "DemoA/Mobile",
+        "PCTheme": "DemoA/PC"
       },
       {
         "Name": "DemoB",

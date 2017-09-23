@@ -8,57 +8,30 @@ namespace CX.Web.Themes
     public class ThemeableViewLocationExpander : IViewLocationExpander
     {
         private const string ThemeKey = "cx.themename";
-        private const string DeviceKey = "cx.device";
 
         public void PopulateValues(ViewLocationExpanderContext context)
         {
-            var themeContext = (IThemeContext)context.ActionContext.HttpContext.RequestServices.GetService(typeof(IThemeContext));
-            context.Values[ThemeKey] = themeContext.WorkingThemeName;
-            if (DeviceSupport.DistinguishDevice)
-            {
-                context.Values[DeviceKey] = context.ActionContext.HttpContext.Request.IsMobileDevice()
-                    ? "Mobile"
-                    : "PC";
-            }
+            var themeContext = (IThemeProvider)context.ActionContext.HttpContext.RequestServices.GetService(typeof(IThemeProvider));
+            context.Values[ThemeKey] = themeContext.GetWorkingTheme(
+                context.ActionContext.HttpContext.Request.IsMobileDevice(),
+                context.ActionContext.HttpContext.Request.Host.Host)?.ThemeDirPath;
         }
 
         public IEnumerable<string> ExpandViewLocations(ViewLocationExpanderContext context, IEnumerable<string> viewLocations)
         {
-            string theme = null;
-            var a = context.Values.TryGetValue(ThemeKey, out theme);
-            if (DeviceSupport.DistinguishDevice)
-            {
-                string device = null;
-                var b = context.Values.TryGetValue(DeviceKey, out device);
-                if (DeviceSupport.ForceMode == DeviceType.Mobile)
-                {
-                    b = true;
-                    device = "Mobile";
-                }
-                else if (DeviceSupport.ForceMode == DeviceType.PC)
-                {
-                    b = true;
-                    device = "PC";
-                }
-                if (a && b)
-                {
-                    viewLocations = new[]
-                        {
-                            $"/Themes/{theme}/{device}/Views/{{1}}/{{0}}.cshtml",
-                            $"/Themes/{theme}/{device}/Views/Shared/{{0}}.cshtml",
-                        }
-                        .Concat(viewLocations);
-                }
-            }
-            else if (a)
+            string themeDirPath = null;
+            context.Values.TryGetValue(ThemeKey, out themeDirPath);
+
+            if (!string.IsNullOrWhiteSpace(themeDirPath))
             {
                 viewLocations = new[]
                     {
-                        $"/Themes/{theme}/Views/{{1}}/{{0}}.cshtml",
-                        $"/Themes/{theme}/Views/Shared/{{0}}.cshtml",
+                        $"{themeDirPath}/Views/{{1}}/{{0}}.cshtml",
+                        $"{themeDirPath}/Views/Shared/{{0}}.cshtml",
                     }
                     .Concat(viewLocations);
             }
+
             return viewLocations;
         }
     }

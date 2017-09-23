@@ -26,17 +26,13 @@ namespace CX.Web.Attributes
             get; set;
         }
 
-        private string GetDirectoryPath(string basePath, string deviceType,string tenant,string theme)
+        private string GetDirectoryPath(string basePath, string deviceType,string theme)
         {
 
             var dir = Path.Combine(basePath, "wwwroot", "staticPages");
             if (!string.IsNullOrEmpty(deviceType))
             {
                 dir = Path.Combine(dir, deviceType);
-            }
-            if (!string.IsNullOrEmpty(tenant))
-            {
-                dir = Path.Combine(dir, tenant);
             }
             if (!string.IsNullOrEmpty(theme))
             {
@@ -68,11 +64,9 @@ namespace CX.Web.Attributes
                 }
             }
             var env = context.HttpContext.RequestServices.GetService<IHostingEnvironment>();
-            var tenantProvider = context.HttpContext.RequestServices.GetService<ITenantProvider>();
-            var themeContext = context.HttpContext.RequestServices.GetService<IThemeContext>();
+            var themeProvider = context.HttpContext.RequestServices.GetService<IThemeProvider>();
             string filePath = Path.Combine(GetDirectoryPath(env.ContentRootPath, deviceType, 
-                tenantProvider.TenantsConfig.CurrentTenant,
-                themeContext.WorkingThemeName), controllerName + "-" + actionName + (string.IsNullOrEmpty(id) ? "" : ("-" + id)) + ".html");
+                themeProvider.GetWorkingTheme(context.HttpContext.Request.IsMobileDevice(),context.HttpContext.Request.Host.Host)?.ThemeName), controllerName + "-" + actionName + (string.IsNullOrEmpty(id) ? "" : ("-" + id)) + ".html");
             if (File.Exists(filePath))
             {
                 using (var fs = File.Open(filePath, FileMode.Open))
@@ -133,10 +127,9 @@ namespace CX.Web.Attributes
                 }
                 var deviceType = context.HttpContext.Request.GetDeviceType();
                 var env = context.HttpContext.RequestServices.GetService<IHostingEnvironment>();
-                var tenantProvider = context.HttpContext.RequestServices.GetService<ITenantProvider>();
-                var themeContext = context.HttpContext.RequestServices.GetService<IThemeContext>();
-                string devicedir = GetDirectoryPath(env.ContentRootPath, deviceType, tenantProvider.TenantsConfig.CurrentTenant,
-                    themeContext.WorkingThemeName);
+                var themeProvider = context.HttpContext.RequestServices.GetService<IThemeProvider>();
+                string devicedir = GetDirectoryPath(env.ContentRootPath, deviceType, 
+                    themeProvider.GetWorkingTheme(context.HttpContext.Request.IsMobileDevice(), context.HttpContext.Request.Host.Host)?.ThemeName);
 
                 string filePath = Path.Combine(devicedir, controllerName + "-" + actionName + (string.IsNullOrEmpty(id) ? "" : ("-" + id)) + ".html");
                 string html = builder.ToString();

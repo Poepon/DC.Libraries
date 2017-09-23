@@ -4,16 +4,10 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>CX.Web</RootNamespace>
     <AssemblyName>CX.Web.Framework</AssemblyName>
-    <Version>2.0.5</Version>
+    <Version>2.2.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description />
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Themes\IThemeProvider.cs" />
-    <Compile Remove="Themes\ThemeConfiguration.cs" />
-    <Compile Remove="Themes\ThemeProvider.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CoreCompat.System.Drawing.v2" Version="5.2.0-preview1-r131" />
@@ -29,7 +23,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
-    
+    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
   </ItemGroup>
 
 </Project>

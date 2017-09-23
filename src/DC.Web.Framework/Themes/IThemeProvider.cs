@@ -4,10 +4,12 @@ namespace CX.Web.Themes
 {
     public partial interface IThemeProvider
     {
-        ThemeConfiguration GetThemeConfiguration(string themeName);
+        ThemeItem GetTheme(string themeName);
 
-        IList<ThemeConfiguration> GetThemeConfigurations();
+        IList<ThemeItem> GetThemes();
 
-        bool ThemeConfigurationExists(string themeName);
+        bool ThemeExists(string themeName);
+
+        ThemeItem GetWorkingTheme(bool isMobile, string domain);
     }
 }

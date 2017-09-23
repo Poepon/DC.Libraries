@@ -21,8 +21,12 @@ namespace CX.Web.Tenants
             {
                 if (_multitenancy == null)
                 {
-                    var config = AppConfigurations.GetFullPath(Path.Combine(_environment.ContentRootPath, "apptenant.json"));
-                    _multitenancy = config.GetSection("Multitenancy").Get<Multitenancy>();
+                    string filePath = Path.Combine(_environment.ContentRootPath, "apptenant.json");
+                    if (File.Exists(filePath))
+                    {
+                        var config = AppConfigurations.GetFullPath(filePath);
+                        _multitenancy = config.GetSection("Multitenancy").Get<Multitenancy>();
+                    }
                 }
                 return _multitenancy;
             }

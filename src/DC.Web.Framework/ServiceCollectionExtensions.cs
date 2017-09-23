@@ -28,10 +28,6 @@ namespace CX.Web
         /// </summary>
         public TimeSpan SessionIOTimeout { get; set; }
 
-        /// <summary>
-        /// Set True distinguish PC or Mobile,Set False not distinguish,default True
-        /// </summary>
-        public bool DistinguishDevice { get; set; } = true;
     }
     public static class ServiceCollectionExtensions
     {
@@ -46,7 +42,7 @@ namespace CX.Web
                 option.IOTimeout = frameworkOption?.SessionIOTimeout ?? option.IOTimeout;
             });
 
-            AddThemes(services, frameworkOption?.DistinguishDevice ?? true);
+            AddThemes(services);
 
             AddCaptcha(services);
 
@@ -65,14 +61,12 @@ namespace CX.Web
         /// </summary>
         /// <param name="services">Collection of service descriptors</param>
         /// <param name="distinguishDevice">Set True distinguish PC or Mobile,Set False not distinguish</param>
-        public static void AddThemes(this IServiceCollection services, bool distinguishDevice)
+        public static void AddThemes(this IServiceCollection services)
         {
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            //services.AddTransient<IThemeProvider, ThemeProvider>();
+            services.AddTransient<IThemeProvider, ThemeProvider>();
             services.AddSingleton<ITenantProvider, TenantProvider>();
-            services.AddSingleton<IThemeContext, ThemeContext>();
-            DeviceSupport.DistinguishDevice = distinguishDevice;
             //themes support
             services.Configure<RazorViewEngineOptions>(options =>
             {

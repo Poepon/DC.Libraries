@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 
 namespace CX.Web.Themes
 {
@@ -10,8 +11,7 @@ namespace CX.Web.Themes
     {
         #region Fields
 
-        private readonly IList<ThemeConfiguration> _themeConfigurations = new List<ThemeConfiguration>();
-        private readonly string _basePath;
+        private readonly ThemeConfiguration _themeConfiguration = null;
 
         #endregion
 
@@ -19,58 +19,46 @@ namespace CX.Web.Themes
 
         public ThemeProvider(IHostingEnvironment env)
         {
-            var path = "~/Themes/";
-            path = path.Replace("~/", "").TrimStart('/').Replace('/', '\\');
-            _basePath = Path.Combine(env.ContentRootPath, path);
-            LoadConfigurations();
+            var config = AppConfigurations.GetFullPath(Path.Combine(env.ContentRootPath, "appsettings.json"));
+            _themeConfiguration = config.GetSection("ThemeSetting").Get<ThemeConfiguration>();
         }
 
         #endregion
 
-        #region Utility
-
-        private void LoadConfigurations()
-        {
-            foreach (string themeName in Directory.GetDirectories(_basePath))
-            {
-                var configuration = CreateThemeConfiguration(themeName);
-                if (configuration != null)
-                {
-                    _themeConfigurations.Add(configuration);
-                }
-            }
-        }
-
-        private ThemeConfiguration CreateThemeConfiguration(string themePath)
-        {
-            var themeDirectory = new DirectoryInfo(themePath);
-            var themeConfigFile = new FileInfo(Path.Combine(themeDirectory.FullName, "theme.json"));
-
-            if (themeConfigFile.Exists)
-            {
-                return new ThemeConfiguration(themeDirectory.Name, themeDirectory.FullName);
-            }
-
-            return null;
-        }
-
-        #endregion
 
         #region Methods
 
-        public ThemeConfiguration GetThemeConfiguration(string themeName)
+        public ThemeItem GetWorkingTheme(bool isMobile, string domain)
         {
-            return _themeConfigurations.SingleOrDefault(x => x.ThemeName.Equals(themeName, StringComparison.CurrentCultureIgnoreCase));
+
+            var query = _themeConfiguration.Themes.Where(t =>
+            ((t.SupportMobile == true && isMobile == true) || (t.SupportPC == true && isMobile == false)));
+
+            var curTheme = query.FirstOrDefault(t =>
+            t.SupportDomainAdapter && t.Domains.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Contains(domain));
+
+            if (curTheme == null)
+            {
+                curTheme = _themeConfiguration.Themes.FirstOrDefault(t =>
+                    t.ThemeName == _themeConfiguration.DefaultTheme);
+            }
+
+            return curTheme;
         }
 
-        public IList<ThemeConfiguration> GetThemeConfigurations()
+        public ThemeItem GetTheme(string themeName)
         {
-            return _themeConfigurations;
+            return _themeConfiguration.Themes.SingleOrDefault(x => x.ThemeName.Equals(themeName, StringComparison.CurrentCultureIgnoreCase));
         }
 
-        public bool ThemeConfigurationExists(string themeName)
+        public IList<ThemeItem> GetThemes()
         {
-            return GetThemeConfigurations().Any(configuration => configuration.ThemeName.Equals(themeName, StringComparison.CurrentCultureIgnoreCase));
+            return _themeConfiguration.Themes;
+        }
+
+        public bool ThemeExists(string themeName)
+        {
+            return GetThemes().Any(configuration => configuration.ThemeName.Equals(themeName, StringComparison.CurrentCultureIgnoreCase));
         }
 
         #endregion
