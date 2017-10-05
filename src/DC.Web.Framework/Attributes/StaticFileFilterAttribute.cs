@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using CX.Web.Tenants;
 using CX.Web.Themes;
 using CX.Web.WebExtensions;
 using Microsoft.AspNetCore.Hosting;
