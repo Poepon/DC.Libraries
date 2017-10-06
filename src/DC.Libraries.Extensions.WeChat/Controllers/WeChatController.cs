@@ -1,6 +1,6 @@
 ﻿using System;
 using DC.Libraries.Extensions.WeChat.Models;
-using DC.Libraries.Extensions.WeChat.Session;
+using DC.Libraries.Extensions.WeChat.Runtime;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -74,6 +74,10 @@ namespace DC.Libraries.Extensions.WeChat.Controllers
                 {
                     return Content(e.Message);
                 }
+            }
+            if (string.IsNullOrEmpty(_config.LoginCallbackUrl))
+            {
+                return Redirect(returnUrl);
             }
             var backUrl = $"{Request.Scheme}://{Request.Host.Host}{_config.LoginCallbackUrl}?returnUrl={returnUrl}";
             return Redirect(backUrl.ToString());

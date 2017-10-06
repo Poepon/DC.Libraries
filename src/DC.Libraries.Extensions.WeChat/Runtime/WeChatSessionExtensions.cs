@@ -1,9 +1,9 @@
 ﻿using System;
-using Microsoft.AspNetCore.Http;
 using DC.Libraries.Extensions.WeChat.Models;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
-namespace DC.Libraries.Extensions.WeChat.Session
+namespace DC.Libraries.Extensions.WeChat.Runtime
 {
     public static class WeChatSessionExtensions
     {
