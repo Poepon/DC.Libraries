@@ -11,21 +11,19 @@ namespace DC.Libraries.Extensions.WeChat.Runtime
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public static bool IsWeiXinBrowser(this HttpRequest request)
+        public static bool IsWeChatBrowser(this HttpRequest request)
         {
             var userAgent = request.Headers[HeaderNames.UserAgent].ToString();
-            bool isWeiXinBrowser = userAgent != null &&
-                                   userAgent.Contains("MicroMessenger");
-            return isWeiXinBrowser;
+            return userAgent != null && userAgent.Contains("MicroMessenger");
         }
         /// <summary>
         /// 获取微信版本号
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public static decimal GetWeiXinVersion(this HttpRequest request)
+        public static decimal GetWeChatVersion(this HttpRequest request)
         {
-            if (IsWeiXinBrowser(request))
+            if (IsWeChatBrowser(request))
             {
                 var userAgent = request.Headers[HeaderNames.UserAgent].ToString();
                 int idx = userAgent.IndexOf("MicroMessenger", StringComparison.Ordinal);

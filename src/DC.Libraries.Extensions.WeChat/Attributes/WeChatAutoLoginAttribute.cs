@@ -8,8 +8,7 @@ namespace DC.Libraries.Extensions.WeChat.Attritues
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            bool isWeiXinBrowser = context.HttpContext.Request.IsWeiXinBrowser();
-            if (isWeiXinBrowser)
+            if (context.HttpContext.Request.IsWeChatBrowser())
             {
                 if (context.HttpContext.Session.GetOAuthAccessToken() == null)
                 {
