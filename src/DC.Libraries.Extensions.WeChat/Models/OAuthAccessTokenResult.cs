@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace DC.Libraries.Extensions.WeChat.Models
 {
-
+    /// <summary>
+    /// 获取OAuth AccessToken的结果
+    /// 如果错误，返回结果{"errcode":40029,"errmsg":"invalid code"}
+    /// </summary>
     public class OAuthAccessToken
     {
+        /// <summary>返回消息代码数字（同errcode枚举值）</summary>
         public int errcode { get; set; }
 
         /// <summary>返回结果信息</summary>

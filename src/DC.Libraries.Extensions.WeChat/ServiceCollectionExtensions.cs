@@ -6,7 +6,12 @@ namespace DC.Libraries.Extensions.WeChat
 {
     public static class ServiceCollectionExtensions
     {
-        public static void AddWeChat(this IServiceCollection services, IConfiguration configuration)
+        /// <summary>
+        /// 添加微信配置
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="configuration"></param>
+        public static void AddWeChatConfig(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<WeChatSetting>(configuration.GetSection("WeChatSetting"));
         }

@@ -7,15 +7,31 @@ namespace DC.Libraries.Extensions.WeChat.Session
 {
     public static class WeChatSessionExtensions
     {
+        /// <summary>
+        /// 设置当前Session的OAuthAccessToken
+        /// </summary>
+        /// <param name="session"></param>
+        /// <param name="data"></param>
         public static void SetOAuthAccessToken(this ISession session, OAuthAccessToken data)
         {
             if (session == null)
             {
                 throw new ArgumentNullException(nameof(session));
             }
-            session.SetString(nameof(OAuthAccessToken), JsonConvert.SerializeObject(data));
+            if (data == null)
+            {
+                session.Remove(nameof(OAuthAccessToken));
+            }
+            else
+            {
+                session.SetString(nameof(OAuthAccessToken), JsonConvert.SerializeObject(data));
+            }
         }
-
+        /// <summary>
+        /// 获取当前Session的OAuthAccessToken
+        /// </summary>
+        /// <param name="session"></param>
+        /// <returns></returns>
         public static OAuthAccessToken GetOAuthAccessToken(this ISession session)
         {
             if (session == null)
@@ -23,6 +39,10 @@ namespace DC.Libraries.Extensions.WeChat.Session
                 throw new ArgumentNullException(nameof(session));
             }
             var str = session.GetString(nameof(OAuthAccessToken));
+            if (string.IsNullOrEmpty(str))
+            {
+                return null;
+            }
             return JsonConvert.DeserializeObject<OAuthAccessToken>(str);
         }
     }

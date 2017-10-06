@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using DC.Libraries.Extensions.WeChat.Session;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Net.Http.Headers;
@@ -23,7 +22,7 @@ namespace DC.Libraries.Extensions.WeChat.Attritues
                 int idx = userAgent.IndexOf("MicroMessenger", StringComparison.Ordinal);
                 string vs = userAgent.Substring(idx + "MicroMessenger".Length + 1, 3);
                 var version = Convert.ToDecimal(vs);
-                if (!context.HttpContext.User.Identity.IsAuthenticated)
+                if (context.HttpContext.Session.GetOAuthAccessToken() == null)
                 {
                     context.Result = new RedirectToRouteResult("WeChatLogin",
                         new { returnUrl = context.HttpContext.Request.Path.ToString() });
