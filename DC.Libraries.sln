@@ -23,7 +23,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{9D07061F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NugetServerWeb", "tools\NugetServerWeb\NugetServerWeb.csproj", "{DF875117-0571-4733-A51B-621DCF801ACA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DC.Libraries.Extensions.WeChat", "src\DC.Libraries.Extensions.WeChat\DC.Libraries.Extensions.WeChat.csproj", "{08CDBC16-C03D-46C0-8922-CDE67DAA3B8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DC.Libraries.Extensions.WeChat", "src\DC.Libraries.Extensions.WeChat\DC.Libraries.Extensions.WeChat.csproj", "{08CDBC16-C03D-46C0-8922-CDE67DAA3B8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DC.Libraries.Extensions.Protobuf", "src\DC.Libraries.Extensions.Protobuf\DC.Libraries.Extensions.Protobuf.csproj", "{23AAED3A-1E80-496E-BA76-8ADB0D512A0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{08CDBC16-C03D-46C0-8922-CDE67DAA3B8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08CDBC16-C03D-46C0-8922-CDE67DAA3B8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08CDBC16-C03D-46C0-8922-CDE67DAA3B8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23AAED3A-1E80-496E-BA76-8ADB0D512A0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23AAED3A-1E80-496E-BA76-8ADB0D512A0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23AAED3A-1E80-496E-BA76-8ADB0D512A0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23AAED3A-1E80-496E-BA76-8ADB0D512A0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +82,7 @@ Global
 		{00B970DC-587D-44D6-BD16-E7F97D407792} = {4329814A-65E1-4169-8547-D1C6185F9B2E}
 		{DF875117-0571-4733-A51B-621DCF801ACA} = {9D07061F-E030-4068-9373-FEEF37D63FFB}
 		{08CDBC16-C03D-46C0-8922-CDE67DAA3B8C} = {89A9811B-6BE9-44DF-91AC-EA0027CFA126}
+		{23AAED3A-1E80-496E-BA76-8ADB0D512A0F} = {89A9811B-6BE9-44DF-91AC-EA0027CFA126}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2093AAEF-1D7C-4409-A93C-62D484FB6433}
