@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>CX.Web</RootNamespace>
     <AssemblyName>CX.Web.Framework</AssemblyName>
-    <Version>2.2.1</Version>
+    <Version>2.2.2</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description />
   </PropertyGroup>

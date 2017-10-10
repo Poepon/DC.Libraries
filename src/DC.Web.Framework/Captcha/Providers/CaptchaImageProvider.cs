@@ -33,7 +33,7 @@ namespace CX.Web.Captcha.Providers
             var bColor = string.IsNullOrWhiteSpace(backColor) ?
                 Color.Transparent : ColorTranslator.FromHtml(backColor);
 
-            var captchaFont = new Font(fontName, fontSize, FontStyle.Regular, GraphicsUnit.Pixel);
+            var captchaFont = new Font(fontName, fontSize, FontStyle.Bold, GraphicsUnit.Pixel);
 
             var captchaSize = MeasureString(message, captchaFont);
 
