@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using CX.Web.Themes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -38,8 +37,6 @@ namespace CX.Web
                 option.IOTimeout = frameworkOption?.SessionIOTimeout ?? option.IOTimeout;
             });
 
-            AddThemes(services);
-
         }
 
         public static IApplicationBuilder UseFramework(this IApplicationBuilder app)
@@ -47,25 +44,6 @@ namespace CX.Web
             if (app == null)
                 throw new ArgumentNullException(nameof(app));
             return app.UseSession();
-        }
-
-
-        /// <summary>
-        /// Adds services required for themes support
-        /// </summary>
-        /// <param name="services">Collection of service descriptors</param>
-        /// <param name="distinguishDevice">Set True distinguish PC or Mobile,Set False not distinguish</param>
-        public static void AddThemes(this IServiceCollection services)
-        {
-            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-            services.AddTransient<IThemeProvider, ThemeProvider>();
-
-            //themes support
-            services.Configure<RazorViewEngineOptions>(options =>
-            {
-                options.ViewLocationExpanders.Add(new ThemeableViewLocationExpander());
-            });
         }
 
         /// <summary>

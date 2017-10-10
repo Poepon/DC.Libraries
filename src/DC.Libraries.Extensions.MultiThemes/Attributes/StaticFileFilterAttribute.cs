@@ -1,17 +1,16 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using CX.Web.Themes;
-using CX.Web.WebExtensions;
+using DC.Libraries.Extensions.MultiThemes;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc.ViewFeatures.Internal;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-namespace CX.Web.Attributes
+namespace DC.Libraries.Extensions.Attributes
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = false)]
     public class StaticPageFilterAttribute : ActionFilterAttribute
