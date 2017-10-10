@@ -1,9 +1,5 @@
 ﻿using System;
 using System.IO;
-using CX.Web.Captcha;
-using CX.Web.Captcha.Contracts;
-using CX.Web.Captcha.Providers;
-using CX.Web.Tenants;
 using CX.Web.Themes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -44,8 +40,6 @@ namespace CX.Web
 
             AddThemes(services);
 
-            AddCaptcha(services);
-
         }
 
         public static IApplicationBuilder UseFramework(this IApplicationBuilder app)
@@ -66,26 +60,12 @@ namespace CX.Web
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddTransient<IThemeProvider, ThemeProvider>();
-            services.AddSingleton<ITenantProvider, TenantProvider>();
+
             //themes support
             services.Configure<RazorViewEngineOptions>(options =>
             {
                 options.ViewLocationExpanders.Add(new ThemeableViewLocationExpander());
             });
-        }
-
-        /// <summary>
-        /// Adds services required for captcha support
-        /// </summary>
-        public static void AddCaptcha(this IServiceCollection services)
-        {
-            services.TryAddSingleton<ICaptchaStorageProvider, SessionCaptchaStorageProvider>();
-            services.TryAddSingleton<IHumanReadableIntegerProvider, HumanReadableIntegerProvider>();
-            services.TryAddSingleton<IRandomNumberProvider, RandomNumberProvider>();
-            services.TryAddSingleton<ICaptchaImageProvider, CaptchaImageProvider>();
-            services.TryAddSingleton<ICaptchaProtectionProvider, CaptchaProtectionProvider>();
-            services.TryAddSingleton<ICaptchaCodeGenerator, CaptchaCodeGenerator>();
-            services.AddTransient<CaptchaTagHelper>();
         }
 
         /// <summary>
