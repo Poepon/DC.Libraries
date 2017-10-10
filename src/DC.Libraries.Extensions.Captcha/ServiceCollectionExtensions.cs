@@ -1,10 +1,10 @@
 ﻿using DC.Libraries.Extensions.Captcha.Contracts;
 using DC.Libraries.Extensions.Captcha.Providers;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.AspNetCore.Http;
+using DC.Libraries.Extensions.Captcha;
 
-namespace DC.Libraries.Extensions.Captcha
+namespace Microsoft.Extensions.DependencyInjection
 {
     public static class ServiceCollectionExtensions
     {
