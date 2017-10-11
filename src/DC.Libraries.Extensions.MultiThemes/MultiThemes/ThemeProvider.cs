@@ -15,9 +15,9 @@ namespace DC.Libraries.Extensions.MultiThemes
 
         #region Constructors
 
-        public ThemeProvider(IOptions<ThemeConfiguration> options)
+        public ThemeProvider(IOptionsMonitor<ThemeConfiguration> options)
         {
-            _themeConfiguration = options.Value;
+            _themeConfiguration = options.CurrentValue;
         }
 
         #endregion
