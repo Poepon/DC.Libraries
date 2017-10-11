@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace DC.Libraries.Extensions.WeChat.Attritues
+namespace DC.Libraries.Extensions.WeChat.Attributes
 {
     public class WeChatAutoLoginAttribute : ActionFilterAttribute
     {

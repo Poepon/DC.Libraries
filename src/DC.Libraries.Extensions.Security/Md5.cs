@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace CX.Web.Security
+namespace DC.Libraries.Extensions.Security
 {
     /// <summary>
     /// MD5加密类

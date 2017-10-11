@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CX.Web.Monitor
+namespace DC.Libraries.Extensions.Monitor
 {
     /// <summary>
     /// 系统信息

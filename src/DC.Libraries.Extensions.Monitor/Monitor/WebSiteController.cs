@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.PlatformAbstractions;
 
-namespace CX.Web.Monitor
+namespace DC.Libraries.Extensions.Monitor
 { 
     public class WebSiteController: Controller
     {

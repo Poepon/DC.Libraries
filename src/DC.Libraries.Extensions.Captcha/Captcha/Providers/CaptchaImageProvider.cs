@@ -92,7 +92,8 @@ namespace DC.Libraries.Extensions.Captcha.Providers
 
         private static SizeF MeasureString(string text, Font f)
         {
-            using (var bmp = new Bitmap(1, 1))
+            int imageWidth = text.Length * 16;
+            using (var bmp = new Bitmap(imageWidth, 20))
             {
                 using (var g = Graphics.FromImage(bmp))
                 {

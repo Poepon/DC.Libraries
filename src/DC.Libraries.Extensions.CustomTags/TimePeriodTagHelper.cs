@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace CX.Web.CustomTag
+namespace DC.Libraries.Extensions.CustomTags
 {
     [HtmlTargetElement("timeperiod")]
     public class TimePeriodTagHelper : TagHelper
