@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using DC.Libraries.Extensions.Captcha.Contracts;
 using DC.Libraries.Extensions.Captcha.Providers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -27,16 +26,6 @@ namespace DC.Libraries.Extensions.Captcha
         /// The default input name of the captcha.
         /// </summary>
         public const string CaptchaInputName = "CaptchaInputText";
-
-        private readonly IRandomNumberProvider _randomNumberProvider;
-
-        /// <summary>
-        /// Captcha TagHelper
-        /// </summary>
-        public CaptchaTagHelper(IRandomNumberProvider randomNumberProvider)
-        {
-            _randomNumberProvider = randomNumberProvider;
-        }
 
         /// <summary>
         /// Default order is <c>0</c>.

@@ -13,14 +13,13 @@ namespace Microsoft.Extensions.DependencyInjection
         /// </summary>
         public static void AddCaptcha(this IServiceCollection services)
         {
-            services.TryAddSingleton<ICaptchaStorageProvider, SessionCaptchaStorageProvider>();
-            services.TryAddSingleton<IHumanReadableIntegerProvider, HumanReadableIntegerProvider>();
-            services.TryAddSingleton<IRandomNumberProvider, RandomNumberProvider>();
-            services.TryAddSingleton<ICaptchaImageProvider, CaptchaImageProvider>();
-            services.TryAddSingleton<ICaptchaProtectionProvider, CaptchaProtectionProvider>();
-            services.TryAddSingleton<ICaptchaCodeGenerator, CaptchaCodeGenerator>();
-            services.TryAddSingleton<ICaptchaCodeMain, CaptchaCodeMain>(); 
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddTransient<ICaptchaStorageProvider, SessionCaptchaStorageProvider>();
+            services.AddTransient<ICaptchaImageProvider, CaptchaImageProvider>();
+            services.AddTransient<ICaptchaProtectionProvider, CaptchaProtectionProvider>();
+            services.AddTransient<ICaptchaCodeGenerator, CaptchaCodeGenerator>();
+            services.AddTransient<ICaptchaCodeMain, CaptchaCodeMain>(); 
             services.AddTransient<CaptchaTagHelper>();
         }
     }

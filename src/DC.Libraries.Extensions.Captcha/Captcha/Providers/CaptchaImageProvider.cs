@@ -26,7 +26,7 @@ namespace DC.Libraries.Extensions.Captcha.Providers
 
 
             //定义图像的大小，生成图像的实例  
-            using (Bitmap Img = new Bitmap((int)code.Length * 18, 32))
+            using (Bitmap Img = new Bitmap((int)code.Length * 16, 30))
             {
                 //从Img对象生成新的Graphics对象    
                 using (Graphics g = Graphics.FromImage(Img))

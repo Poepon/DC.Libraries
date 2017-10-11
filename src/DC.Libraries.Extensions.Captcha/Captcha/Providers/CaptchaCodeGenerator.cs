@@ -7,9 +7,9 @@ namespace DC.Libraries.Extensions.Captcha.Providers
 {
     public class CaptchaCodeGenerator : ICaptchaCodeGenerator
     {
-        public const string LowerLetter = "qwertyuiopasdfghjklzxcvbnm";
-        public const string UpperLetter = "QWERTYUIOPASDFGHJKLZXCVBNM";
-        public const string NumberStr = "0123456789";
+        public const string LowerLetter = "qwertyupasdfghjkzxcvbnm";
+        public const string UpperLetter = "QWERTYUPASDFGHJKLZXCVBNM";
+        public const string NumberStr = "123456789";
         private readonly Dictionary<string, string> _dictionary = new Dictionary<string, string>();
 
         public string OutputText(bool hasLowerLetter, bool hasUpperLetter, bool hasNumber, int len)

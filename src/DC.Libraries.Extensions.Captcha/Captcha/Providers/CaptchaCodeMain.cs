@@ -14,7 +14,8 @@ namespace DC.Libraries.Extensions.Captcha.Providers
         public CaptchaCodeMain(
             ICaptchaImageProvider captchaImageProvider,
             ICaptchaStorageProvider captchaStorageProvider,
-            ICaptchaCodeGenerator captchaCodeGenerator, IHttpContextAccessor httpContextAccessor)
+            ICaptchaCodeGenerator captchaCodeGenerator, 
+            IHttpContextAccessor httpContextAccessor)
         {
             _captchaImageProvider = captchaImageProvider;
             _captchaStorageProvider = captchaStorageProvider;
