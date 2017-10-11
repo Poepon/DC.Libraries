@@ -2,7 +2,7 @@
 {
     public interface ICaptchaCodeMain
     {
-        byte[] GeneratorCaptcha(string name, string foreColor, string backColor, float fontSize, string fontName);
+        byte[] GeneratorCaptcha(string name);
 
         bool VerifyCaptcha(string name, string value);
 

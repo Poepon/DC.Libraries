@@ -119,10 +119,6 @@ namespace DC.Libraries.Extensions.Captcha
                 {
                     name = Name,
                     rndDate = DateTime.Now.Ticks,
-                    foreColor = ForeColor,
-                    backColor = BackColor,
-                    fontSize = FontSize,
-                    fontName = FontName,
                     area = ""
                 });
 
@@ -146,10 +142,6 @@ namespace DC.Libraries.Extensions.Captcha
                 {
                     name = Name,
                     rndDate = DateTime.Now.Ticks,
-                    foreColor = ForeColor,
-                    backColor = BackColor,
-                    fontSize = FontSize,
-                    fontName = FontName,
                     area = ""
                 });
 

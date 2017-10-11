@@ -67,10 +67,6 @@ namespace DC.Libraries.Extensions.Captcha
             _captchaCodeMain.Remove(model.CaptchaToken);
 
             var tagHelper = HttpContext.RequestServices.GetRequiredService<CaptchaTagHelper>();
-            tagHelper.BackColor = model.BackColor;
-            tagHelper.FontName = model.FontName;
-            tagHelper.FontSize = model.FontSize;
-            tagHelper.ForeColor = model.ForeColor;
             tagHelper.Placeholder = model.Placeholder;
             tagHelper.TextBoxClass = model.TextBoxClass;
             tagHelper.ContainerTemplate = model.ContainerTemplate;
@@ -120,8 +116,7 @@ namespace DC.Libraries.Extensions.Captcha
         /// Creates the captcha image.
         /// </summary>
         [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true, Duration = 0)]
-        public IActionResult Show(string name, string rndDate, string foreColor = "#1B0172",
-            string backColor = "", float fontSize = 12, string fontName = "Tahoma")
+        public IActionResult Show(string name, string rndDate)
         {
             if (IsImageHotlinking())
             {
@@ -130,7 +125,7 @@ namespace DC.Libraries.Extensions.Captcha
             byte[] image;
             try
             {
-                image = _captchaCodeMain.GeneratorCaptcha(name, foreColor, backColor, fontSize, fontName);
+                image = _captchaCodeMain.GeneratorCaptcha(name);
             }
             catch (Exception ex)
             {

@@ -8,30 +8,7 @@ namespace DC.Libraries.Extensions.Captcha
     /// </summary>
     public class CaptchaTagHelperHtmlAttributes
     {
-        /// <summary>
-        /// The back-color of the captcha. It's default value is string.Empty.
-        /// </summary>
-        [HtmlAttributeName("asp-back-color")]
-        public string BackColor { set; get; } = "";
-
-        /// <summary>
-        /// The font-name of the captcha. It's default value is Tahoma.
-        /// </summary>
-        [HtmlAttributeName("asp-font-name")]
-        public string FontName { set; get; } = "Tahoma";
-
-        /// <summary>
-        /// The font-size of the captcha. It's default value is 12.
-        /// </summary>
-        [HtmlAttributeName("asp-font-size")]
-        public float FontSize { set; get; } = 12;
-
-        /// <summary>
-        /// The fore-color of the captcha. It's default value is #1B0172.
-        /// </summary>
-        [HtmlAttributeName("asp-fore-color")]
-        public string ForeColor { set; get; } = "#1B0172";
-
+      
         [HtmlAttributeName("asp-captcha-name")]
         public string Name { set; get; } = Guid.NewGuid().ToString("N");
 
