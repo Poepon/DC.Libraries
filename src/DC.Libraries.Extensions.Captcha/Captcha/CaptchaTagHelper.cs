@@ -107,6 +107,12 @@ namespace DC.Libraries.Extensions.Captcha
                 new
                 {
                     name = Name,
+                    this.ImageWidth,
+                    this.ImageHeight,
+                    this.CaptchaLength,
+                    this.HasNumber,
+                    HasLower,
+                    HasUpper,
                     rndDate = DateTime.Now.Ticks,
                     area = ""
                 });
@@ -130,6 +136,12 @@ namespace DC.Libraries.Extensions.Captcha
                 new
                 {
                     name = Name,
+                    this.ImageWidth,
+                    this.ImageHeight,
+                    this.CaptchaLength,
+                    this.HasNumber,
+                    HasLower,
+                    HasUpper,
                     rndDate = DateTime.Now.Ticks,
                     area = ""
                 });

@@ -8,6 +8,6 @@
         /// <summary>
         /// Creates the captcha image.
         /// </summary>
-        byte[] DrawCaptcha(string message);
+        byte[] DrawCaptcha(string message, int imageWidth, int imageHeight);
     }
 }

@@ -74,6 +74,12 @@ namespace DC.Libraries.Extensions.Captcha
             tagHelper.ValidationErrorMessage = model.ValidationErrorMessage;
             tagHelper.ValidationMessageClass = model.ValidationMessageClass;
             tagHelper.RefreshButtonClass = model.RefreshButtonClass;
+            tagHelper.CaptchaLength = model.CaptchaLength;
+            tagHelper.ImageWidth = model.ImageWidth;
+            tagHelper.ImageHeight = model.ImageHeight;
+            tagHelper.HasNumber = model.HasNumber;
+            tagHelper.HasLower = model.HasLower;
+            tagHelper.HasUpper = model.HasUpper;
 
             var tagHelperContext = new TagHelperContext(
                 allAttributes: new TagHelperAttributeList(),
@@ -116,7 +122,7 @@ namespace DC.Libraries.Extensions.Captcha
         /// Creates the captcha image.
         /// </summary>
         [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true, Duration = 0)]
-        public IActionResult Show(string name, string rndDate)
+        public IActionResult Show(string name, int captchaLength, bool hasNumber, bool haslower, bool hasUpper, int imageWidth, int imageHeight, string rndDate)
         {
             if (IsImageHotlinking())
             {
@@ -125,7 +131,7 @@ namespace DC.Libraries.Extensions.Captcha
             byte[] image;
             try
             {
-                image = _captchaCodeMain.GeneratorCaptcha(name);
+                image = _captchaCodeMain.GeneratorCaptcha(name, captchaLength, hasNumber, haslower, hasUpper, imageWidth, imageHeight);
             }
             catch (Exception ex)
             {

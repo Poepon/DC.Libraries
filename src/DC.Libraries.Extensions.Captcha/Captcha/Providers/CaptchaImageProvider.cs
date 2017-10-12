@@ -15,7 +15,7 @@ namespace DC.Libraries.Extensions.Captcha.Providers
         /// 该方法是将生成的随机数写入图像文件  
         /// </summary>  
         /// <param name="code">code是一个随机数</param>
-        public byte[] DrawCaptcha(string code)
+        public byte[] DrawCaptcha(string code, int imageWidth, int imageHeight)
         {
             Random random = new Random();
             //验证码颜色集合  
@@ -26,7 +26,7 @@ namespace DC.Libraries.Extensions.Captcha.Providers
 
 
             //定义图像的大小，生成图像的实例  
-            using (Bitmap Img = new Bitmap((int)code.Length * 16, 30))
+            using (Bitmap Img = new Bitmap(imageWidth, imageHeight))
             {
                 //从Img对象生成新的Graphics对象    
                 using (Graphics g = Graphics.FromImage(Img))
