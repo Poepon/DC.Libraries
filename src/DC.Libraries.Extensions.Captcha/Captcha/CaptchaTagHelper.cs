@@ -167,7 +167,7 @@ namespace DC.Libraries.Extensions.Captcha
             textInput.Attributes.Add("data-val-required", ValidationErrorMessage);
             textInput.Attributes.Add("placeholder", Placeholder);
             textInput.Attributes.Add("dir", "ltr");
-            textInput.Attributes.Add("type", "text");
+            textInput.Attributes.Add("type", HasNumber && !HasLower && !HasUpper ? "number" : "text");
             textInput.Attributes.Add("value", "");
             return textInput;
         }
