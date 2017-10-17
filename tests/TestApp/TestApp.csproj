@@ -14,7 +14,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\DC.Libraries.Extensions.AutoMapper\DC.Libraries.Extensions.AutoMapper.csproj" />
+    <ProjectReference Include="..\..\src\DC.Libraries.Extensions.Captcha\DC.Libraries.Extensions.Captcha.csproj" />
+    <ProjectReference Include="..\..\src\DC.Libraries.Extensions.CustomTags\DC.Libraries.Extensions.CustomTags.csproj" />
     <ProjectReference Include="..\..\src\DC.Libraries.Extensions.DependencyInjection\DC.Libraries.Extensions.DependencyInjection.csproj" />
+    <ProjectReference Include="..\..\src\DC.Libraries.Extensions.MultiThemes\DC.Libraries.Extensions.MultiThemes.csproj" />
+    <ProjectReference Include="..\..\src\DC.Libraries.Extensions.WeChat\DC.Libraries.Extensions.WeChat.csproj" />
     <ProjectReference Include="..\..\src\DC.Web.Framework\DC.Web.Framework.csproj" />
     <ProjectReference Include="..\DC.Test.BLL\DC.Test.BLL.csproj" />
   </ItemGroup>

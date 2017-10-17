@@ -55,6 +55,7 @@ namespace DC.Libraries.Extensions.Captcha.Providers
                 if (value.Equals(captchaText, StringComparison.OrdinalIgnoreCase))
                 {
                     isValid = true;
+                    Remove(name);
                 }
             }
             return isValid;

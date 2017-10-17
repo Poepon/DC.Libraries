@@ -7,14 +7,12 @@
 
 <form asp-action="TestCaptcha">
     <captcha asp-captcha-name="mycaptcha" 
-             asp-placeholder="Security code as a number"
-             asp-font-name="Tahoma"
-             asp-font-size="20"
-             asp-fore-color="#333333"
-             asp-back-color="#ccc"
-             asp-text-box-class="text-box single-line form-control col-md-4"
+             asp-textbox-placeholder="Security code as a number"
+             asp-textbox-class="text-box single-line form-control col-md-4"
              asp-refresh-button-class="glyphicon glyphicon-refresh btn-sm"
+             asp-captcha-haslower="false" asp-captcha-hasupper="false" asp-captcha-hasnumber="true"
     />
   
     <button type="submit">submit</button>
 </form>
+<timeperiod></timeperiod>

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DC.Libraries.Extensions.Dep
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DC.Libraries.Extensions.Autofac", "src\DC.Libraries.Extensions.Autofac\DC.Libraries.Extensions.Autofac.csproj", "{4A836388-FC96-4CA1-8FE7-FB0D005C28F2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4329814A-65E1-4169-8547-D1C6185F9B2E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{4329814A-65E1-4169-8547-D1C6185F9B2E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{89A9811B-6BE9-44DF-91AC-EA0027CFA126}"
 EndProject
@@ -27,15 +27,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DC.Libraries.Extensions.WeC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DC.Libraries.Extensions.Protobuf", "src\DC.Libraries.Extensions.Protobuf\DC.Libraries.Extensions.Protobuf.csproj", "{23AAED3A-1E80-496E-BA76-8ADB0D512A0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DC.Libraries.Extensions.Captcha", "src\DC.Libraries.Extensions.Captcha\DC.Libraries.Extensions.Captcha.csproj", "{57990360-DD01-446F-8614-4F738CA746E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DC.Libraries.Extensions.Captcha", "src\DC.Libraries.Extensions.Captcha\DC.Libraries.Extensions.Captcha.csproj", "{57990360-DD01-446F-8614-4F738CA746E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DC.Libraries.Extensions.MultiThemes", "src\DC.Libraries.Extensions.MultiThemes\DC.Libraries.Extensions.MultiThemes.csproj", "{A68BADCD-9B06-4B80-88A6-A0FF62AB03E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DC.Libraries.Extensions.MultiThemes", "src\DC.Libraries.Extensions.MultiThemes\DC.Libraries.Extensions.MultiThemes.csproj", "{A68BADCD-9B06-4B80-88A6-A0FF62AB03E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DC.Libraries.Extensions.Monitor", "src\DC.Libraries.Extensions.Monitor\DC.Libraries.Extensions.Monitor.csproj", "{63063162-6E0B-4374-A54C-E91A21187E6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DC.Libraries.Extensions.Monitor", "src\DC.Libraries.Extensions.Monitor\DC.Libraries.Extensions.Monitor.csproj", "{63063162-6E0B-4374-A54C-E91A21187E6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DC.Libraries.Extensions.Security", "src\DC.Libraries.Extensions.Security\DC.Libraries.Extensions.Security.csproj", "{9B6CC1C6-2745-49E7-BCFB-2F41C6C3F166}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DC.Libraries.Extensions.Security", "src\DC.Libraries.Extensions.Security\DC.Libraries.Extensions.Security.csproj", "{9B6CC1C6-2745-49E7-BCFB-2F41C6C3F166}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DC.Libraries.Extensions.CustomTags", "src\DC.Libraries.Extensions.CustomTags\DC.Libraries.Extensions.CustomTags.csproj", "{1DBBD179-0C3E-4D24-8D80-B8AA527A20B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DC.Libraries.Extensions.CustomTags", "src\DC.Libraries.Extensions.CustomTags\DC.Libraries.Extensions.CustomTags.csproj", "{1DBBD179-0C3E-4D24-8D80-B8AA527A20B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DC.Libraries.Extensions.HtmlMinify", "src\DC.Libraries.Extensions.HtmlMinify\DC.Libraries.Extensions.HtmlMinify.csproj", "{3B2925DC-5FA2-4CE1-B191-498D64B73EC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{1DBBD179-0C3E-4D24-8D80-B8AA527A20B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DBBD179-0C3E-4D24-8D80-B8AA527A20B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DBBD179-0C3E-4D24-8D80-B8AA527A20B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B2925DC-5FA2-4CE1-B191-498D64B73EC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B2925DC-5FA2-4CE1-B191-498D64B73EC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B2925DC-5FA2-4CE1-B191-498D64B73EC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B2925DC-5FA2-4CE1-B191-498D64B73EC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,6 +124,7 @@ Global
 		{63063162-6E0B-4374-A54C-E91A21187E6E} = {89A9811B-6BE9-44DF-91AC-EA0027CFA126}
 		{9B6CC1C6-2745-49E7-BCFB-2F41C6C3F166} = {89A9811B-6BE9-44DF-91AC-EA0027CFA126}
 		{1DBBD179-0C3E-4D24-8D80-B8AA527A20B1} = {89A9811B-6BE9-44DF-91AC-EA0027CFA126}
+		{3B2925DC-5FA2-4CE1-B191-498D64B73EC9} = {89A9811B-6BE9-44DF-91AC-EA0027CFA126}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2093AAEF-1D7C-4409-A93C-62D484FB6433}
