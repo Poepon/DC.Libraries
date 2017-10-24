@@ -113,6 +113,7 @@ namespace DC.Libraries.Extensions.Captcha
                     this.HasNumber,
                     HasLower,
                     HasUpper,
+                    fontSize = FontSize,
                     rndDate = DateTime.Now.Ticks,
                     area = ""
                 });
@@ -142,6 +143,7 @@ namespace DC.Libraries.Extensions.Captcha
                     this.HasNumber,
                     HasLower,
                     HasUpper,
+                    fontSize = FontSize,
                     rndDate = DateTime.Now.Ticks,
                     area = ""
                 });

@@ -24,14 +24,14 @@ namespace DC.Libraries.Extensions.Captcha.Providers
         }
 
 
-        public byte[] GeneratorCaptcha(string name,int captchaLength,bool hasNumber,bool haslower,bool hasUpper, int imageWidth,int imageHeight)
+        public byte[] GeneratorCaptcha(string name,int captchaLength,bool hasNumber,bool haslower,bool hasUpper, int imageWidth,int imageHeight, float fontSize)
         {
             var text = _captchaCodeGenerator.OutputText(haslower, hasUpper, hasNumber, captchaLength);
             _captchaStorageProvider.Add(_httpContextAccessor.HttpContext, name, text);
             byte[] image = null;
             try
             {
-                image = _captchaImageProvider.DrawCaptcha(text, imageWidth,imageHeight);
+                image = _captchaImageProvider.DrawCaptcha(text, fontSize, imageWidth,imageHeight);
             }
             catch (Exception ex)
             {

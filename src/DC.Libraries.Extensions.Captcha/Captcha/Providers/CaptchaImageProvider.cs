@@ -15,7 +15,7 @@ namespace DC.Libraries.Extensions.Captcha.Providers
         /// 该方法是将生成的随机数写入图像文件  
         /// </summary>  
         /// <param name="code">code是一个随机数</param>
-        public byte[] DrawCaptcha(string code, int imageWidth, int imageHeight)
+        public byte[] DrawCaptcha(string code,float emSize, int imageWidth, int imageHeight)
         {
             Random random = new Random();
             //验证码颜色集合  
@@ -45,7 +45,7 @@ namespace DC.Libraries.Extensions.Captcha.Providers
                     {
                         int cindex = random.Next(7);//随机颜色索引值  
                         int findex = random.Next(5);//随机字体索引值  
-                        Font f = new Font(fonts[findex], 15, FontStyle.Bold);//字体  
+                        Font f = new Font(fonts[findex], emSize, FontStyle.Bold);//字体  
                         Brush b = new SolidBrush(c[cindex]);//颜色  
                         int ii = 4;
                         if ((i + 1) % 2 == 0)//控制验证码不在同一高度  

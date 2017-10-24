@@ -49,6 +49,12 @@ namespace DC.Libraries.Extensions.Captcha
         public int ImageHeight { set; get; } = 30;
 
         /// <summary>
+        /// 验证码字体大小
+        /// </summary>
+        [HtmlAttributeName("asp-image-fontsize")]
+        public int FontSize { set; get; } = 15;
+
+        /// <summary>
         /// 验证码长度
         /// </summary>
         [HtmlAttributeName("asp-captcha-length")]
