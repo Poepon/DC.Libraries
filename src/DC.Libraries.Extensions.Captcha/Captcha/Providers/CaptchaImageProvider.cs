@@ -15,7 +15,7 @@ namespace DC.Libraries.Extensions.Captcha.Providers
         /// 该方法是将生成的随机数写入图像文件  
         /// </summary>  
         /// <param name="code">code是一个随机数</param>
-        public byte[] DrawCaptcha(string code,float emSize, int imageWidth, int imageHeight)
+        public byte[] DrawCaptcha(string code, float emSize, int imageWidth, int imageHeight)
         {
             Random random = new Random();
             //验证码颜色集合  
@@ -52,7 +52,7 @@ namespace DC.Libraries.Extensions.Captcha.Providers
                         {
                             ii = 2;
                         }
-                        g.DrawString(code.Substring(i, 1), f, b, 3 + (i * 12), ii);//绘制一个验证字符  
+                        g.DrawString(code.Substring(i, 1), f, b, random.Next(i * (int)emSize - 5, i * (int)emSize), ii);//绘制一个验证字符  
                     }
                     using (var stream = new MemoryStream())
                     {
