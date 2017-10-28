@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
 using DC.Libraries.Extensions.Captcha.Contracts;
-using System.Drawing.Imaging;
+using System.DrawingCore;
+using System.DrawingCore.Imaging;
 
 namespace DC.Libraries.Extensions.Captcha.Providers
 {
