@@ -6,10 +6,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using AutoMapper;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Rest.Serialization;
 
-namespace TestApp
+namespace DC.Monitor
 {
     public class Startup
     {
@@ -22,28 +22,30 @@ namespace TestApp
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc();
-
-            services.AddDependencyInjection();
-            services.AddAutoMapper();
-            services.AddCaptcha();
-            services.AddThemes(Configuration);
-            services.AddWeChatConfig(Configuration);
-
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(options =>
+        {  
+            //DateTimeFormat
+            services.Configure<MvcJsonOptions>(jsonOptions =>
+            {
+                jsonOptions.SerializerSettings.Converters.Insert(0, new DateJsonConverter()
                 {
-                    options.LoginPath = "/Home/AutoLogin";
-                    options.LogoutPath = "/";
-                    options.Cookie.HttpOnly = true;
+                    DateTimeFormat = "yyyy-MM-dd HH:mm:ss"
                 });
+            });
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseDeveloperExceptionPage();
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
 
             app.UseStaticFiles();
 
