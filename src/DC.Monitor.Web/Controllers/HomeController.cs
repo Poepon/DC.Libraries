@@ -26,7 +26,7 @@ namespace DC.Monitor.Controllers
             ConcurrentBag<SystemInfoModel> bag = new ConcurrentBag<SystemInfoModel>();
             Parallel.ForEach(domains, (s => bag.Add(webServer.GetSystemInfo(s))));
 
-            return View(bag.ToList());
+            return View(bag.OrderBy(d=>d.HostName).ToList());
         }
 
         public IActionResult About()
