@@ -11,12 +11,26 @@ namespace DC.Monitor.Controllers
 {
     public class WebServerCore
     {
-        HttpClient client = new HttpClient();
+        private HttpClient _client = null;
+
+        protected HttpClient client
+        {
+            get
+            {
+                if (_client == null)
+                {
+                    _client = new HttpClient();
+                    _client.Timeout = TimeSpan.FromSeconds(1);
+                }
+                return _client;
+            }
+        }
+
         private async Task<TResult> SendAsync<TResult>(string url) where TResult : class
         {
-            string response = await client.GetStringAsync(url);
             try
             {
+                string response = await client.GetStringAsync(url);
                 TResult result;
                 if (typeof(TResult) == typeof(String))
                 {
@@ -30,7 +44,7 @@ namespace DC.Monitor.Controllers
             }
             catch (System.Exception e)
             {
-                throw e;
+                return null;
             }
         }
 
