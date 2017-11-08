@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Microsoft.Extensions.Options;
 
 namespace DC.Libraries.Extensions.MultiThemes
@@ -32,7 +33,8 @@ namespace DC.Libraries.Extensions.MultiThemes
             ((t.SupportMobile == true && isMobile == true) || (t.SupportPC == true && isMobile == false)));
 
             var curTheme = query.FirstOrDefault(t =>
-            t.SupportDomainAdapter && t.Domains.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Contains(domain));
+                t.SupportDomainAdapter && t.Domains.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
+                    .Any(s => s == domain || t.SupportRegex && new Regex(s).IsMatch(domain)));
 
             if (curTheme == null)
             {

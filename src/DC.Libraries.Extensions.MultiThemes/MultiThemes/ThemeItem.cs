@@ -33,6 +33,11 @@ namespace DC.Libraries.Extensions.MultiThemes
         public string Domains { get; set; }
 
         /// <summary>
+        /// 是否支持正则表达式
+        /// </summary>
+        public bool SupportRegex { get; set; }
+
+        /// <summary>
         /// Theme目录相对路径。如：/Themes/Xpj/PC
         /// </summary>
         public string ThemeDirPath { get; set; }
