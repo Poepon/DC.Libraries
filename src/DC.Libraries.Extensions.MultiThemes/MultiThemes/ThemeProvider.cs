@@ -28,14 +28,32 @@ namespace DC.Libraries.Extensions.MultiThemes
 
         public ThemeItem GetWorkingTheme(bool isMobile, string domain)
         {
-
-            var query = _themeConfiguration.Themes.Where(t =>
-            ((t.SupportMobile == true && isMobile == true) || (t.SupportPC == true && isMobile == false)));
-
-            var curTheme = query.FirstOrDefault(t =>
-                t.SupportDomainAdapter && t.Domains.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
-                    .Any(s => s == domain || t.SupportRegex && new Regex(s).IsMatch(domain)));
-
+            var query = _themeConfiguration.Themes.OrderBy(t => t.Order).Where(t =>
+                  t.SupportDomainAdapter && t.Domains.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
+                      .Any(s => s == domain || t.SupportRegex && new Regex(s).IsMatch(domain)));
+            ThemeItem curTheme = curTheme = query.FirstOrDefault(t => t.Order == 1);
+            if (curTheme == null)
+            {
+                if (isMobile)
+                {
+                    curTheme = query.FirstOrDefault(t => t.SupportMobile == true);
+                }
+                else
+                {
+                    curTheme = query.FirstOrDefault(t => t.SupportPC == true);
+                }
+            }
+            if (curTheme == null)
+            {
+                if (isMobile)
+                {
+                    curTheme = _themeConfiguration.Themes.FirstOrDefault(t => t.SupportMobile == true);
+                }
+                else
+                {
+                    curTheme = _themeConfiguration.Themes.FirstOrDefault(t => t.SupportPC == true);
+                }
+            }
             if (curTheme == null)
             {
                 curTheme = _themeConfiguration.Themes.FirstOrDefault(t =>

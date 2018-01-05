@@ -41,6 +41,11 @@ namespace DC.Libraries.Extensions.MultiThemes
         /// Theme目录相对路径。如：/Themes/Xpj/PC
         /// </summary>
         public string ThemeDirPath { get; set; }
+
+        /// <summary>
+        /// 排序
+        /// </summary>
+        public int Order { get; set; }
     }
 
     public class ThemeConfiguration
