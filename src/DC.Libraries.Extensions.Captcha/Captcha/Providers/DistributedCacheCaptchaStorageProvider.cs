@@ -1,3 +1,4 @@
+using System;
 using DC.Libraries.Extensions.Captcha.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Distributed;
@@ -19,18 +20,19 @@ namespace DC.Libraries.Extensions.Captcha.Providers
 
         public void Add(HttpContext context, string token, string value)
         {
-            _cache.SetString(context.Session.Id + "-" + token, value);
+            _cache.SetString(token, value,
+                new DistributedCacheEntryOptions() {AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5)});
         }
 
         public bool Contains(HttpContext context, string token)
         {
-            var value = _cache.GetString(context.Session.Id + "-" + token);
+            var value = _cache.GetString(token);
             return !string.IsNullOrEmpty(value);
         }
 
         public string GetValue(HttpContext context, string token)
         {
-            var value = _cache.GetString(context.Session.Id + "-" + token);
+            var value = _cache.GetString(token);
             if (string.IsNullOrEmpty(value))
             {
                 _logger.LogWarning("Couldn't find the captcha value in the request.");
@@ -44,7 +46,7 @@ namespace DC.Libraries.Extensions.Captcha.Providers
         {
             if (Contains(context, token))
             {
-                _cache.Remove(context.Session.Id + "-" + token);
+                _cache.Remove(token);
             }
         }
     }
