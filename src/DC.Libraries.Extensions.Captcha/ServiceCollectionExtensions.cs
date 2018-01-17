@@ -26,6 +26,9 @@ namespace Microsoft.Extensions.DependencyInjection
                 case StorageMode.MemoryCache:
                     services.AddTransient<ICaptchaStorageProvider, MemoryCacheCaptchaStorageProvider>();
                     break;
+                case StorageMode.DistributedCache:
+                    services.AddTransient<ICaptchaStorageProvider, DistributedCacheCaptchaStorageProvider>();
+                    break;
             }
 
             services.AddTransient<ICaptchaImageProvider, CaptchaImageProvider>();
@@ -39,6 +42,7 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         Cookie = 1,
         Session = 2,
-        MemoryCache = 3
+        MemoryCache = 3,
+        DistributedCache = 4
     }
 }

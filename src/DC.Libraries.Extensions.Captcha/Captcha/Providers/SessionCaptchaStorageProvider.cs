@@ -15,7 +15,7 @@ namespace DC.Libraries.Extensions.Captcha.Providers
 
         public void Add(HttpContext context, string token, string value)
         {
-            context.Session?.SetString(token,value);
+            context.Session.SetString(token,value);
         }
 
         public bool Contains(HttpContext context, string token)
@@ -25,7 +25,7 @@ namespace DC.Libraries.Extensions.Captcha.Providers
 
         public string GetValue(HttpContext context, string token)
         {
-            string cookieValue= context.Session?.GetString(token);
+            string cookieValue= context.Session.GetString(token);
             if (string.IsNullOrEmpty(cookieValue))
             {
                 _logger.LogWarning("Couldn't find the captcha value in the request.");
