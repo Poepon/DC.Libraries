@@ -6,16 +6,23 @@ using DC.Libraries.Extensions.Captcha;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
+    public class CaptchaOptions
+    {
+        public StorageMode StorageMode { get; set; } = StorageMode.Session;
+
+        public bool Enable { get; set; } = true;
+
+    }
     public static class ServiceCollectionExtensions
     {
         /// <summary>
         /// Adds services required for captcha support
         /// </summary>
-        public static void AddCaptcha(this IServiceCollection services, StorageMode storageMode = StorageMode.Session)
+        public static void AddCaptcha(this IServiceCollection services, CaptchaOptions options)
         {
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-            switch (storageMode)
+            services.AddSingleton(options);
+            switch (options.StorageMode)
             {
                 case StorageMode.Session:
                     services.AddTransient<ICaptchaStorageProvider, SessionCaptchaStorageProvider>();

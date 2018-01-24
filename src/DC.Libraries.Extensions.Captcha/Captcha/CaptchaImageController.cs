@@ -136,7 +136,7 @@ namespace DC.Libraries.Extensions.Captcha
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(1001, ex, "DrawCaptcha error.");
+                _logger.LogCritical(1001, ex, "DrawCaptcha error." + ex.Message);
                 return BadRequest(ex.Message);
             }
             return new FileContentResult(image, "image/png");

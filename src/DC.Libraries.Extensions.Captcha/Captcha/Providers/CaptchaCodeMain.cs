@@ -1,6 +1,7 @@
 using DC.Libraries.Extensions.Captcha.Contracts;
 using System;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DC.Libraries.Extensions.Captcha.Providers
 {
@@ -10,24 +11,30 @@ namespace DC.Libraries.Extensions.Captcha.Providers
         private readonly ICaptchaStorageProvider _captchaStorageProvider;
         private readonly ICaptchaCodeGenerator _captchaCodeGenerator;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly CaptchaOptions _captchaOptions;
 
         public CaptchaCodeMain(
             ICaptchaImageProvider captchaImageProvider,
             ICaptchaStorageProvider captchaStorageProvider,
             ICaptchaCodeGenerator captchaCodeGenerator, 
-            IHttpContextAccessor httpContextAccessor)
+            IHttpContextAccessor httpContextAccessor,
+            CaptchaOptions captchaOptions)
         {
             _captchaImageProvider = captchaImageProvider;
             _captchaStorageProvider = captchaStorageProvider;
             _captchaCodeGenerator = captchaCodeGenerator;
             _httpContextAccessor = httpContextAccessor;
+            _captchaOptions = captchaOptions;
         }
 
 
         public byte[] GeneratorCaptcha(string name,int captchaLength,bool hasNumber,bool haslower,bool hasUpper, int imageWidth,int imageHeight, float fontSize)
         {
             var text = _captchaCodeGenerator.OutputText(haslower, hasUpper, hasNumber, captchaLength);
-            _captchaStorageProvider.Add(_httpContextAccessor.HttpContext, name, text);
+            if (_captchaOptions.Enable)
+            {
+                _captchaStorageProvider.Add(_httpContextAccessor.HttpContext, name, text);
+            }
             byte[] image = null;
             try
             {
@@ -47,6 +54,10 @@ namespace DC.Libraries.Extensions.Captcha.Providers
 
         public bool VerifyCaptcha(string name, string value)
         {
+            if (!_captchaOptions.Enable)
+            {
+                return true;
+            }
             var isValid = false;
             if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(value))
             {
