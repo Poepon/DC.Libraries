@@ -47,23 +47,20 @@ namespace Microsoft.Extensions.DependencyInjection
                         }
                     }
                 }
-                else
+                switch (life)
                 {
-                    switch (life)
-                    {
-                        case DependencyLifeStyle.Transient:
-                            services.AddTransient(type, type);
-                            break;
-                        case DependencyLifeStyle.Scoped:
-                            services.AddScoped(type, type);
-                            break;
-                        case DependencyLifeStyle.Singleton:
-                            services.AddSingleton(type, type);
-                            break;
-                        default:
-                            services.AddTransient(type, type);
-                            break;
-                    }
+                    case DependencyLifeStyle.Transient:
+                        services.AddTransient(type, type);
+                        break;
+                    case DependencyLifeStyle.Scoped:
+                        services.AddScoped(type, type);
+                        break;
+                    case DependencyLifeStyle.Singleton:
+                        services.AddSingleton(type, type);
+                        break;
+                    default:
+                        services.AddTransient(type, type);
+                        break;
                 }
             }
         }

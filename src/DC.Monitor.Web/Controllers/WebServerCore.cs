@@ -3,34 +3,19 @@ using DC.Monitor.Web.Models;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace DC.Monitor.Controllers
 {
     public class WebServerCore
     {
-        private HttpClient _client = null;
-
-        protected HttpClient client
-        {
-            get
-            {
-                if (_client == null)
-                {
-                    _client = new HttpClient();
-                    _client.Timeout = TimeSpan.FromSeconds(1);
-                }
-                return _client;
-            }
-        }
+        private static HttpClient _client = new HttpClient();
 
         private async Task<TResult> SendAsync<TResult>(string url) where TResult : class
         {
             try
             {
-                string response = await client.GetStringAsync(url);
+                string response = await _client.GetStringAsync(url);
                 TResult result;
                 if (typeof(TResult) == typeof(String))
                 {
