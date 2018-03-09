@@ -28,6 +28,10 @@ namespace DC.Libraries.Extensions.MultiThemes
 
         public ThemeItem GetWorkingTheme(bool isMobile, string domain)
         {
+            if (_themeConfiguration.Themes == null || _themeConfiguration.Themes.Count == 0)
+            {
+                return null;
+            }
             var query = _themeConfiguration.Themes.OrderBy(t => t.Order).Where(t =>
                   t.SupportDomainAdapter && t.Domains.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
                       .Any(s => s == domain || t.SupportRegex && new Regex(s).IsMatch(domain)));
