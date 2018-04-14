@@ -10,11 +10,18 @@ using DC.Libraries.Extensions.WeChat.Runtime;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using DC.Libraries.Extensions.Captcha;
 using DC.Libraries.Extensions.WeChat.Attributes;
+using Microsoft.AspNetCore.Hosting;
 
 namespace TestApp.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IApplicationLifetime _applicationLifetime;
+
+        public HomeController(IApplicationLifetime applicationLifetime)
+        {
+            _applicationLifetime = applicationLifetime;
+        }
         public IActionResult Index()
         {
             return View();
@@ -68,6 +75,12 @@ namespace TestApp.Controllers
         public IActionResult ShowOpenId()
         {
             return Content(HttpContext.Session.GetOAuthAccessToken().openid);
+        }
+
+        public IActionResult Restart()
+        {
+            _applicationLifetime.StopApplication();
+            return Redirect("/");
         }
     }
 }

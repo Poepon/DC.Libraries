@@ -1,0 +1,15 @@
+﻿@using System.Text.Encodings.Web
+@model TestApp.Views.Shared.Components.ThemeChange.ThemeViewModel
+@if (Model != null && Model.Themes.Count > 1)
+{
+    <div class="navbar-right">
+        <span style="color: red;">切换皮肤：</span>
+    
+        <select onchange="location.href='/Theme/ChangeTheme?themeName='+this.value+'&returnUrl=@(UrlEncoder.Default.Encode(Context.Request.Path + Context.Request.QueryString))'">
+        @foreach (var theme in Model.Themes)
+        {
+            <option value="@(theme.ThemeName)" selected="@(Model.CurThemeName==theme.ThemeName)">@(theme.ThemeName)</option>
+        }
+        </select>
+    </div>
+}

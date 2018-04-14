@@ -20,7 +20,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddTransient<IThemeProvider, ThemeProvider>();
+            services.AddSingleton<IThemeProvider, ThemeProvider>();
             if (themeConfigStoreType != null && typeof(IThemeConfigStore).IsAssignableFrom(themeConfigStoreType))
             {
                 services.AddTransient(typeof(IThemeConfigStore), themeConfigStoreType);

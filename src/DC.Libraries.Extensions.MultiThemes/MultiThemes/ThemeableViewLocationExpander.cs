@@ -11,9 +11,7 @@ namespace DC.Libraries.Extensions.MultiThemes
         public void PopulateValues(ViewLocationExpanderContext context)
         {
             var themeContext = (IThemeProvider)context.ActionContext.HttpContext.RequestServices.GetService(typeof(IThemeProvider));
-            context.Values[ThemeKey] = themeContext.GetWorkingTheme(
-                context.ActionContext.HttpContext.Request.IsMobileDevice(),
-                context.ActionContext.HttpContext.Request.Host.Host)?.ThemeDirPath;
+            context.Values[ThemeKey] = themeContext.GetWorkingThemeDirPath(context.ActionContext.HttpContext.Request.Host.Host, context.ActionContext.HttpContext.Request.IsMobileDevice());
         }
 
         public IEnumerable<string> ExpandViewLocations(ViewLocationExpanderContext context, IEnumerable<string> viewLocations)

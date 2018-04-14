@@ -11,16 +11,6 @@ namespace DC.Libraries.Extensions.MultiThemes
         /// Theme名称
         /// </summary>
         public string ThemeName { get; set; }
-        
-        /// <summary>
-        /// 支持手机
-        /// </summary>
-        public bool SupportMobile { get; set; }
-        
-        /// <summary>
-        /// 支持PC
-        /// </summary>
-        public bool SupportPC { get; set; }
 
         /// <summary>
         /// 支持域名适配
@@ -41,6 +31,8 @@ namespace DC.Libraries.Extensions.MultiThemes
         /// Theme目录相对路径。如：/Themes/Xpj/PC
         /// </summary>
         public string ThemeDirPath { get; set; }
+
+        public string MobThemeDirPath { get; set; }
 
         /// <summary>
         /// 排序

@@ -10,6 +10,10 @@ namespace DC.Libraries.Extensions.MultiThemes
 
         bool ThemeExists(string themeName);
 
-        ThemeItem GetWorkingTheme(bool isMobile, string domain);
+        ThemeItem GetWorkingTheme(string domain);
+
+        string GetWorkingThemeDirPath(string domain,bool isMob);
+
+        void SetWorkingTheme(string domain, string themeName);
     }
 }
