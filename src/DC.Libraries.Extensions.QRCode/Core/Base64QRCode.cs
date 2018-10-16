@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+
 #if NETSTANDARD2_0
-using System.DrawingCore;
-using System.DrawingCore.Imaging;
+using System.Drawing;
+using System.Drawing.Imaging;
 #else
 using System.Drawing;
 using System.Drawing.Drawing2D;

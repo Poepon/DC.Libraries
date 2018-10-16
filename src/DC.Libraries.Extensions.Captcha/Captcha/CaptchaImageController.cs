@@ -149,6 +149,7 @@ namespace DC.Libraries.Extensions.Captcha
 
         private bool IsImageHotlinking()
         {
+            return false;
             var applicationUrl = $"{Request.Scheme}://{Request.Host.Value}";
             var urlReferrer = (string)Request.Headers[HeaderNames.Referer];
             return string.IsNullOrEmpty(urlReferrer) ||

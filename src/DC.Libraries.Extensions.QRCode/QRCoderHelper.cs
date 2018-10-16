@@ -1,6 +1,6 @@
 ﻿using QRCoder;
-using System.DrawingCore;
-using System.DrawingCore.Imaging;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 
 namespace DC.Libraries.Extensions.QRCoder

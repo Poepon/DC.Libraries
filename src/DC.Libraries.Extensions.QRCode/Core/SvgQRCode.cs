@@ -1,6 +1,6 @@
 ﻿using System;
 #if NETSTANDARD2_0
-using System.DrawingCore;
+using System.Drawing;
 #else
 using System.Drawing;
 #endif

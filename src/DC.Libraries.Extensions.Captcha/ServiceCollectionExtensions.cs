@@ -20,6 +20,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// </summary>
         public static void AddCaptcha(this IServiceCollection services, CaptchaOptions options)
         {
+            services.TryAddTransient<CaptchaImageController>();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton(options);
             switch (options.StorageMode)
